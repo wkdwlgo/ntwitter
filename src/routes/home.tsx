@@ -6,7 +6,7 @@ export default function Home(){
     };
     return (
         <h1>
-            <button onClick={logOut}></button>
+            <button onClick={logOut}>Log out</button>
         </h1>
     );
 }

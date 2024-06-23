@@ -5,11 +5,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Error, Form, Input, Switcher, Title, Wrapper } from "../components/auth-components";
+import GithubButton from "../components/github-btn";
 
 export default function Login(){
     const navigate=useNavigate();
     const [isLoading, setLoading]=useState(false);
-
     const [email, setEmail]=useState("");
     const [password, setPassword]=useState("");
     const [error, setError]=useState("");
@@ -53,6 +53,7 @@ export default function Login(){
             <Switcher>
                 Don't have an account?<Link to="/create-account">Create one &rarr;</Link>
             </Switcher>
+            <GithubButton/>
         </Wrapper>
     )
 }
