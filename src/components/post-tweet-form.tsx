@@ -63,12 +63,17 @@ export default function PostTweetForm(){
     const [isLoading, setLoading]=useState(false);
     const[tweet, setTweet]=useState("");
     const[file,setFile]=useState<File|null>(null);
+    const FILE_SIZE_MAX_LIMIT=1*1024*1024;
     const onChange=(e:React.ChangeEvent<HTMLTextAreaElement>) => {
         setTweet(e.target.value);
     }
     const onFileChange=(e: React.ChangeEvent<HTMLInputElement>) => {
         const {files} =e.target;
         if(files && files.length===1){
+            if(files[0].size>FILE_SIZE_MAX_LIMIT){
+                alert("The maximum capacity that can be uploaded is 1mb");
+                return;
+            }
             setFile(files[0]);
         }
     }
@@ -82,7 +87,7 @@ export default function PostTweetForm(){
                 tweet,
                 createdAt:Date.now(),
                 username:user.displayName || "Anonymous",
-                userId: user.uid,
+                userId: user.uid,//삭제 처리를 위해서, 이름은 같을 수 있으니까
             })
             if(file){
                 const locationRef=ref(storage, `tweets/${user.uid}-${user.displayName}/${doc.id}`);
