@@ -90,7 +90,7 @@ export default function PostTweetForm(){
                 userId: user.uid,//삭제 처리를 위해서, 이름은 같을 수 있으니까
             })
             if(file){
-                const locationRef=ref(storage, `tweets/${user.uid}-${user.displayName}/${doc.id}`);
+                const locationRef=ref(storage, `tweets/${user.uid}/${doc.id}`);
                 const result= await uploadBytes(locationRef,file);
                 const url= await getDownloadURL(result.ref);
                 await updateDoc(doc,{
