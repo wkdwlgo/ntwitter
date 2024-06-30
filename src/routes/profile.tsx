@@ -62,6 +62,7 @@ export default function Profile(){
     const [tweets, setTweets]=useState<ITweet[]>([]);
     const onAvatarChange=async (e:React.ChangeEvent<HTMLInputElement>)=>{
         const {files} =e.target;
+        if (!user) return;
         if(files && files.length===1){
             if(files[0].size>FILE_SIZE_MAX_LIMIT){
                 alert("The maximum capacity that can be uploaded is 1mb");
@@ -72,9 +73,9 @@ export default function Profile(){
             const result=await uploadBytes(locationRef,file);
             const avatarUrl=await getDownloadURL(result.ref);
             setAvatar(avatarUrl);
-            await updateProfile(user,{
-                photoURL:avatarUrl,
-            });
+            await updateProfile(user, {
+              photoURL: avatarUrl,
+          });
         }
     };
     const fetchTweets = async () => {
