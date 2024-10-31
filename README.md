@@ -9,7 +9,7 @@
 ## 사용기술
 - `react`,`typescript`
 - `firebase`
--  Deploy:`gh-page`
+-  Deploy:`firebase-hosting`
 
 ## 전체기능
 1. firebase를 사용해 회원가입/로그인 구현 및 실시간 업데이트
